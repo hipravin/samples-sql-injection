@@ -1,0 +1,25 @@
+spring:
+  flyway:
+    enabled: false
+
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:testdb;sql.syntax_pgs=true
+    username: sa
+    password:
+
+  sql:
+    init:
+      mode: embedded
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: #override with empty value for embedded
+
+logging:
+  level:
+    com.hipravin: DEBUG
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql: TRACE
+    org.springframework: INFO
