@@ -1,5 +1,7 @@
-package hipravin.samples.sqlinjection.dao;
+package hipravin.samples.sqlinjection.dao.vulnerable;
 
+import hipravin.samples.sqlinjection.dao.AbstractJdbcBookRepository;
+import hipravin.samples.sqlinjection.dao.BookEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

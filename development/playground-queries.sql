@@ -12,7 +12,9 @@ values ('Head First Java'),
        ('What if % or _ is present in the title?')
 ;
 
+insert into book (title)
+values ('Backslashes for dummies\b');
 
-select * from book where title like '%\%%';
+select * from book where title = '';
 
 select * from book;

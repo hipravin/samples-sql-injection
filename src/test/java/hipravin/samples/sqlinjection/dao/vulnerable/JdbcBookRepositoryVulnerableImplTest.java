@@ -1,12 +1,15 @@
-package hipravin.samples.sqlinjection.dao;
+package hipravin.samples.sqlinjection.dao.vulnerable;
 
+import hipravin.samples.sqlinjection.dao.BookEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
+import static hipravin.samples.sqlinjection.dao.BookRepositoryTestUtils.assertSingleResultByTitle;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -17,11 +20,14 @@ class JdbcBookRepositoryVulnerableImplTest {
 
     @Test
     void testFind() {
-        String title = "Test Effective Java";
-        List<BookEntity> books = jdbcBookRepositoryVulnerable.findByTitle(title);
-        assertNotNull(books);
-        assertEquals(1, books.size());
-        assertEquals(title, books.get(0).getTitle());
+        assertSingleResultByTitle(jdbcBookRepositoryVulnerable, "Test Effective Java");
+    }
+
+    @Test
+    void testBadGrammar() {
+        assertThrows(BadSqlGrammarException.class, () -> {
+            assertSingleResultByTitle(jdbcBookRepositoryVulnerable, "You Don't Know JS. Up & Going");
+        });
     }
 
     @Test

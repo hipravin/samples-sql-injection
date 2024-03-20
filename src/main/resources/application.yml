@@ -11,12 +11,14 @@ spring:
     properties:
       hibernate:
         default_schema: "sqlinjection"
+        hbm2ddl:
+          auto: none
 
 logging:
   level:
     hipravin.samples: DEBUG
     org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.type.descriptor.sql: TRACE #TODO: something changed? don't see any trace messages
     org.springframework: DEBUG
 #    org.springframework: INFO
 

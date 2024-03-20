@@ -1,8 +1,22 @@
 package hipravin.samples.sqlinjection.dao;
 
+import jakarta.persistence.*;
 
+
+@Entity
+@Table(name = "BOOK")
+@NamedQueries({
+        @NamedQuery(name = "BookEntity.findById",
+                query="select b from BookEntity b where b.title = :title")
+})
 public class BookEntity {
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //identity generator is perfect until we require insert batching
     private Long id;
+
+    @Basic
+    @Column(name = "TITLE")
     private String title;
 
     public BookEntity() {
