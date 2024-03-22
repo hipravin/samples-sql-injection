@@ -12,7 +12,7 @@ import static hipravin.samples.sqlinjection.dao.JdbcUtils.getLongNullable;
 public abstract class AbstractJdbcBookRepository implements BookRepository {
     protected final JdbcTemplate jdbcTemplate;
 
-    public AbstractJdbcBookRepository(JdbcTemplate jdbcTemplate) {
+    protected AbstractJdbcBookRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

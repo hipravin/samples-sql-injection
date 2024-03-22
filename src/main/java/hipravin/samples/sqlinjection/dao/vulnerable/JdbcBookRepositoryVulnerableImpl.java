@@ -4,6 +4,7 @@ import hipravin.samples.sqlinjection.dao.AbstractJdbcBookRepository;
 import hipravin.samples.sqlinjection.dao.BookEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Vulnerable to SQL injection due to parameter string concatenation.
  */
 @Repository
+@Transactional
 public class JdbcBookRepositoryVulnerableImpl extends AbstractJdbcBookRepository {
 
     public JdbcBookRepositoryVulnerableImpl(JdbcTemplate jdbcTemplate) {

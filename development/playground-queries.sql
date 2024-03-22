@@ -13,8 +13,15 @@ values ('Head First Java'),
 ;
 
 insert into book (title)
-values ('Backslashes for dummies\b');
+values (E'\u0027');
 
 select * from book where title = '';
 
 select * from book;
+
+select * from book where title like '%'||E'\u0027'||'%';
+
+
+SELECT pg_stat_statements_reset();
+
+select * from pg_stat_statements;
