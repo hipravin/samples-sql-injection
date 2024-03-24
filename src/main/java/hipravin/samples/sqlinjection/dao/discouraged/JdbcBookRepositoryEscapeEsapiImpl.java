@@ -28,6 +28,11 @@ public class JdbcBookRepositoryEscapeEsapiImpl extends AbstractJdbcBookRepositor
         return jdbcTemplate.query(query, BOOK_ROW_MAPPER);
     }
 
+    @Override
+    public List<BookEntity> findByTitleStartingWithOrderByTitle(String prefix) {
+        throw new UnsupportedOperationException("No major reason to implement");
+    }
+
     static String escapeSpecialCharacters(String value) {
         //available codecs: MySQL, DB2, Oracle. But there is no PostgreSQL codec!
         return ESAPI.encoder().encodeForSQL(new OracleCodec(), value);

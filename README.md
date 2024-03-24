@@ -16,4 +16,4 @@ docker-compose up -d
 
 mvn flyway:migrate -Dflyway.password=admin -f pom.xml
 
-3. Run individual tests in class JdbcBookRepositoryVulnerableImplIT    
+3. Run individual tests class PostgreSqlTestsIT to check behavior against running PostgreSQL instance. Other tests are unit tests executed on embedded hsqldb instance.    

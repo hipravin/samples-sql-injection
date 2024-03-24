@@ -20,8 +20,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-class JdbcBookRepositoryVulnerableImplIT {
-    public static final Logger log = LoggerFactory.getLogger(JdbcBookRepositoryVulnerableImplIT.class);
+class PlaygroundIT {
+    public static final Logger log = LoggerFactory.getLogger(PlaygroundIT.class);
 
     @Autowired
     JdbcBookRepositoryVulnerableImpl jdbcBookRepositoryVulnerable;

@@ -20,7 +20,7 @@ class JdbcBookRepositoryVulnerableImplTest {
 
     @Test
     void testFind() {
-        assertSingleResultByTitle(jdbcBookRepositoryVulnerable, "Test Effective Java");
+        assertSingleResultByTitle(jdbcBookRepositoryVulnerable, "Head First Java");
     }
 
     @Test

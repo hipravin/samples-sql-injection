@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import static hipravin.samples.sqlinjection.dao.BookRepositoryTestUtils.assertNotFoundByTitle;
-import static hipravin.samples.sqlinjection.dao.BookRepositoryTestUtils.assertSingleResultByTitle;
+import static hipravin.samples.sqlinjection.dao.BookRepositoryTestUtils.*;
 
 
 @SpringBootTest
@@ -17,13 +16,6 @@ class JdbcBookRepositoryEscapeEsapiImplTest {
 
     @Test
     void testFind() {
-        assertSingleResultByTitle(jdbcBookRepositoryEscapeEsapi, "Test Effective Java");
-        assertSingleResultByTitle(jdbcBookRepositoryEscapeEsapi, "You Don't Know JS. Up & Going");
-    }
-
-    @Test
-    void testNotVulnerable() {
-        String title = "' or '1'='1";
-        assertNotFoundByTitle(jdbcBookRepositoryEscapeEsapi, title);
+        testFindCorrect(jdbcBookRepositoryEscapeEsapi);
     }
 }

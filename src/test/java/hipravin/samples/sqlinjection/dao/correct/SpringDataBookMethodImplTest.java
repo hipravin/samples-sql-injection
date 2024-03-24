@@ -1,4 +1,4 @@
-package hipravin.samples.sqlinjection.dao.discouraged;
+package hipravin.samples.sqlinjection.dao.correct;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +9,17 @@ import static hipravin.samples.sqlinjection.dao.BookRepositoryTestUtils.*;
 
 @SpringBootTest
 @ActiveProfiles({"test"})
-class JdbcBookRepositoryEscapeImplTest {
+class SpringDataBookMethodImplTest {
     @Autowired
-    JdbcBookRepositoryEscapeImpl jdbcBookRepositoryEscape;
+    SpringDataBookMethodImpl springDataBookMethod;
 
     @Test
     void testFind() {
-        testFindCorrect(jdbcBookRepositoryEscape);
+        testFindCorrect(springDataBookMethod);
+    }
+
+    @Test
+    void testStartingWith() {
+        testFindLikeCorrect(springDataBookMethod);
     }
 }

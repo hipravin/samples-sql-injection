@@ -21,7 +21,7 @@ class JpaBookRepositoryVulnerableImplTest {
 
     @Test
     void testFind() {
-        assertSingleResultByTitle(jpaBookRepositoryVulnerable, "Test Effective Java");
+        assertSingleResultByTitle(jpaBookRepositoryVulnerable, "Head First Java");
     }
 
     @Test

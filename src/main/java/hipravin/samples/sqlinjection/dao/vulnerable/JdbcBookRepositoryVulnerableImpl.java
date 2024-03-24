@@ -2,6 +2,7 @@ package hipravin.samples.sqlinjection.dao.vulnerable;
 
 import hipravin.samples.sqlinjection.dao.AbstractJdbcBookRepository;
 import hipravin.samples.sqlinjection.dao.BookEntity;
+import org.springframework.data.jpa.repository.query.EscapeCharacter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,5 +24,13 @@ public class JdbcBookRepositoryVulnerableImpl extends AbstractJdbcBookRepository
     public List<BookEntity> findByTitle(String title) {
         String query = "select * from book where title = '" + title + "'";
         return jdbcTemplate.query(query, BOOK_ROW_MAPPER);
+    }
+
+    @Override
+    public List<BookEntity> findByTitleStartingWithOrderByTitle(String prefix) {
+        String query = "select * from book where title like ? order by title";
+
+        return jdbcTemplate.query(query, ps -> ps.setString(1, prefix + "%"),
+                BOOK_ROW_MAPPER);
     }
 }

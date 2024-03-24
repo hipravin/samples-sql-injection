@@ -6,8 +6,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "BOOK")
 @NamedQueries({
-        @NamedQuery(name = "BookEntity.findById",
-                query="select b from BookEntity b where b.title = :title")
+        @NamedQuery(name = "BookEntity.findByTitle",
+                query="select b from BookEntity b where b.title = :title"),
+        @NamedQuery(name = "BookEntity.findByTitlePrefix",
+                query="select b from BookEntity b where b.title like :titlePrefix escape '\\' order by b.title")
 })
 public class BookEntity {
     @Id

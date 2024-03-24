@@ -25,6 +25,11 @@ public class JdbcBookRepositoryEscapeImpl extends AbstractJdbcBookRepository {
         return jdbcTemplate.query(query, BOOK_ROW_MAPPER);
     }
 
+    @Override
+    public List<BookEntity> findByTitleStartingWithOrderByTitle(String prefix) {
+        throw new UnsupportedOperationException("No major reason to implement");
+    }
+
     static String escapeQuotes(String value) {
         return (value != null) ? value.replace("'", "''") : null;
     }
