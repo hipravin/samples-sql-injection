@@ -1,9 +1,6 @@
 package hipravin.samples.sqlinjection.showcase;
 
-import hipravin.samples.sqlinjection.dao.correct.JdbcBookRepositoryImpl;
-import hipravin.samples.sqlinjection.dao.correct.JpaBookRepositoryImpl;
-import hipravin.samples.sqlinjection.dao.correct.SpringDataBookMethodImpl;
-import hipravin.samples.sqlinjection.dao.correct.SpringDataBookQueryImpl;
+import hipravin.samples.sqlinjection.dao.correct.*;
 import hipravin.samples.sqlinjection.dao.discouraged.JdbcBookRepositoryEscapeEsapiImpl;
 import hipravin.samples.sqlinjection.dao.discouraged.JdbcBookRepositoryEscapeImpl;
 import hipravin.samples.sqlinjection.dao.vulnerable.JdbcBookRepositoryVulnerableImpl;
@@ -40,7 +37,14 @@ class PostgreSqlTestsIT {
     SpringDataBookQueryImpl springDataBookQuery;
     @Autowired
     SpringDataBookQueryNoWildcardEscapeImpl springDataBookQueryNoWildcardEscape;
+    @Autowired
+    JpaCriteriaBookRepositoryImpl jpaCriteriaBookRepository;
 
+    @Test
+    void testPlgrd() {
+        testFindLikeOrCorrect(jpaCriteriaBookRepository);
+
+    }
     @Test
     void testFindByTitleExactCorrect() {
         testFindCorrect(springDataBookMethod);
@@ -48,6 +52,7 @@ class PostgreSqlTestsIT {
         testFindCorrect(jpaBookRepository);
         testFindCorrect(springDataBookMethod);
         testFindCorrect(springDataBookQuery);
+        testFindCorrect(jpaCriteriaBookRepository);
     }
 
     @Test
@@ -55,8 +60,8 @@ class PostgreSqlTestsIT {
         testFindLikeCorrect(springDataBookMethod);
         testFindLikeCorrect(jdbcBookRepository);
         testFindLikeCorrect(jpaBookRepository);
-        testFindLikeCorrect(springDataBookMethod);
         testFindLikeCorrect(springDataBookQuery);
+        testFindLikeCorrect(jpaCriteriaBookRepository);
     }
 
     @Test
@@ -70,5 +75,11 @@ class PostgreSqlTestsIT {
         testFindLikeInjection(jdbcBookRepositoryVulnerable);
         testFindLikeInjection(jpaBookRepositoryVulnerable);
         testFindLikeInjection(springDataBookQueryNoWildcardEscape);
+    }
+
+    @Test
+    void testLikeOrCorrect() {
+        testFindLikeOrCorrect(jdbcBookRepository);
+        testFindLikeOrCorrect(jpaCriteriaBookRepository);
     }
 }

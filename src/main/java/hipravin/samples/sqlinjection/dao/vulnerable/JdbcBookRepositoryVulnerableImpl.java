@@ -7,7 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Vulnerable to SQL injection due to parameter string concatenation.
@@ -32,5 +35,15 @@ public class JdbcBookRepositoryVulnerableImpl extends AbstractJdbcBookRepository
 
         return jdbcTemplate.query(query, ps -> ps.setString(1, prefix + "%"),
                 BOOK_ROW_MAPPER);
+    }
+
+    @Override
+    public List<BookEntity> findByTitleLikeOr(String... orLikeTitles) {
+        String likePart = Arrays.stream(orLikeTitles)
+                .map(t -> String.format("title like '%%%s%%' escape '\\'", EscapeCharacter.DEFAULT.escape(t)))
+                .collect(Collectors.joining(" OR "));
+
+        String query = "select * from book where " + likePart + "order by title";
+        return jdbcTemplate.query(query, BOOK_ROW_MAPPER);
     }
 }

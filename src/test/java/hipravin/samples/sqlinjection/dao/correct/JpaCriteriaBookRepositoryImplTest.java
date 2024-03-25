@@ -6,25 +6,25 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import static hipravin.samples.sqlinjection.dao.BookRepositoryTestUtils.*;
-
 @SpringBootTest
 @ActiveProfiles({"test"})
-class JdbcBookRepositoryImplTest {
+class JpaCriteriaBookRepositoryImplTest {
     @Autowired
-    JdbcBookRepositoryImpl jdbcBookRepository;
+    JpaCriteriaBookRepositoryImpl jpaCriteriaBookRepository;
 
     @Test
     void testFind() {
-        testFindCorrect(jdbcBookRepository);
+        testFindCorrect(jpaCriteriaBookRepository);
     }
 
     @Test
     void testStartingWith() {
-        testFindLikeCorrect(jdbcBookRepository);
+        testFindLikeCorrect(jpaCriteriaBookRepository);
     }
 
     @Test
     void testFindLikeOr() {
-        testFindLikeOrCorrect(jdbcBookRepository);
+        testFindLikeOrCorrect(jpaCriteriaBookRepository);
     }
+
 }

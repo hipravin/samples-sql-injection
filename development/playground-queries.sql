@@ -20,6 +20,7 @@ select * from book where title like 'Some Title%';
 select * from book where title like 'What if \% or \_ is present in the title?' escape '\';
 select * from book where title like 'What if |% or |_ is present in the title?' escape '|';
 
+select * from book where title ~ '^S{1,3}.+\d+$';
 
 select * from book where title = '';
 

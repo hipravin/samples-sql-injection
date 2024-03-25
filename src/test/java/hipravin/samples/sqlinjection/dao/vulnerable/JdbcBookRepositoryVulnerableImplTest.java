@@ -37,4 +37,23 @@ class JdbcBookRepositoryVulnerableImplTest {
         assertNotNull(books);
         assertEquals(7, books.size());
     }
+
+    @Test
+    void testFindLikeMultiple1() {
+        List<BookEntity> books = jdbcBookRepositoryVulnerable.findByTitleLikeOr("%", "_");
+        assertEquals(1, books.size());
+    }
+
+    @Test
+    void testFindLikeMultiple2() {
+        assertThrows(BadSqlGrammarException.class, () -> {
+            jdbcBookRepositoryVulnerable.findByTitleLikeOr("%Some", "Head", "Don't");
+        });
+    }
+
+    @Test
+    void testFindLikeMultiple3() {
+        List<BookEntity> books = jdbcBookRepositoryVulnerable.findByTitleLikeOr("Some", "Head");
+        assertEquals(5, books.size());
+    }
 }

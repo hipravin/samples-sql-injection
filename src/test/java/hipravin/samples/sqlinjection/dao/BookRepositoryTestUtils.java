@@ -1,5 +1,7 @@
 package hipravin.samples.sqlinjection.dao;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,5 +70,17 @@ public class BookRepositoryTestUtils {
         assertFindByTitleStartingWithInjection(repository, "%Some", 4);
         assertFindByTitleStartingWithInjection(repository, "%", 7);
         assertFindByTitleStartingWith(repository, "What if % or _ is present in the title?", 1);
+    }
+
+
+    public static void testFindLikeOrCorrect(BookRepository repository) {
+        List<BookEntity> books1 = repository.findByTitleLikeOr("%", "_");
+        assertEquals(1, books1.size());
+
+        List<BookEntity> books2 = repository.findByTitleLikeOr("%Some", "Head", "Don't");
+        assertEquals(2, books2.size());
+
+        List<BookEntity> books3 = repository.findByTitleLikeOr("Some", "Head");
+        assertEquals(5, books3.size());
     }
 }
