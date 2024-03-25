@@ -15,7 +15,7 @@ values ('Head First Java'),
 
 truncate book;
 
-select * from book where title like 'Some Title%';
+select * from book where title like '%term1%' or title like '%term2%' or title like '%term3%' ;
 
 select * from book where title like 'What if \% or \_ is present in the title?' escape '\';
 select * from book where title like 'What if |% or |_ is present in the title?' escape '|';
