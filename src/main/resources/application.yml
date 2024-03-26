@@ -18,7 +18,8 @@ logging:
   level:
     hipravin.samples: DEBUG
     org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE #TODO: something changed? don't see any trace messages
+    org.hibernate.orm.jdbc.bind: TRACE
+#    org.hibernate.type.descriptor.sql: TRACE #prior to hibernate 6
     org.springframework: DEBUG
 #    org.springframework: INFO
 

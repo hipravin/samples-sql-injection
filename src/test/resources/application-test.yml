@@ -21,5 +21,6 @@ logging:
   level:
     com.hipravin: DEBUG
     org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE
+    #    org.hibernate.type.descriptor.sql: TRACE #prior to hibernate 6
     org.springframework: DEBUG
