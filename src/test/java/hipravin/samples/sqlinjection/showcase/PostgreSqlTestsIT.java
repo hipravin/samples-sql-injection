@@ -42,7 +42,7 @@ class PostgreSqlTestsIT {
 
     @Test
     void testPlgrd() {
-        testFindLikeOrCorrect(jpaCriteriaBookRepository);
+        testFindLikeOrCorrect(jdbcBookRepository);
 
     }
     @Test
